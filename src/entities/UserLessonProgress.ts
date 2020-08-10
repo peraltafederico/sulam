@@ -13,9 +13,9 @@ export class UserLessonProgress {
   @Column({ type: 'datetime' })
   timestamp: Date
 
-  @ManyToOne(() => User, (user) => user.UserLessonProgress)
+  @ManyToOne(() => User, (user) => user.userLessonProgress)
   user: User
 
-  @ManyToOne(() => Lessons, (lesson) => lesson.UserLessonProgress)
+  @ManyToOne(() => Lessons, (lesson) => lesson.userLessonProgress)
   lesson: Lessons
 }

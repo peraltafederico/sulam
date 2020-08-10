@@ -21,7 +21,7 @@ export class User {
   name: string
 
   @OneToMany(() => UserLessonProgress, (userLessonProgress) => userLessonProgress.user)
-  UserLessonProgress: UserLessonProgress[]
+  userLessonProgress: UserLessonProgress[]
 
   @OneToMany(() => UserBookFavorite, (userBookFavorite) => userBookFavorite.user)
   userBookFavorite: UserBookFavorite[]

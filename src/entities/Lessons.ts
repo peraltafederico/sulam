@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne } from 'typeorm'
 import { UserLessonProgress } from './UserLessonProgress'
+import { Book } from './Book'
 
 @Entity({ name: 'Lessons' })
 export class Lessons {
@@ -22,5 +23,8 @@ export class Lessons {
   numberOfPages: string
 
   @OneToMany(() => UserLessonProgress, (userLesson) => userLesson.user)
-  UserLessonProgress: UserLessonProgress[]
+  userLessonProgress: UserLessonProgress[]
+
+  @ManyToOne(() => Book, (book) => book.lessons)
+  book: Book
 }

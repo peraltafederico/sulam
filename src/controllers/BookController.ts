@@ -10,7 +10,7 @@ export default class BookController {
     try {
       const bookRepository = getRepository(Book)
 
-      const book = await bookRepository.find()
+      const book = await bookRepository.find({ relations: ['lessons'] })
 
       res.send(book)
     } catch (error) {

@@ -47,7 +47,82 @@ paths:
         "200":
           description: "All books returned successfully"
           schema:
-            $ref: "#/definitions/LibraryResponse"            
+            $ref: "#/definitions/LibraryResponse"
+  /savePage:
+    post:
+      tags:
+      - "savePage"
+      summary: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "SavePageRequest"
+          required: true
+          schema:
+            $ref: "#/definitions/SavePageRequest"
+      responses:
+        "400":
+          description: ""
+          schema:
+            $ref: "#/definitions/Error"
+        "200":
+          description: "All books returned successfully" 
+          schema:
+            $ref: "#/definitions/CommonResponse"
+  /favorite:
+    post:
+      tags:
+      - "favorite"
+      summary: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "FavoriteRequest"
+          required: true
+          schema:
+            $ref: "#/definitions/FavoriteRequest"
+      responses:
+        "400":
+          description: ""
+          schema:
+            $ref: "#/definitions/Error"
+        "200":
+          description: "All books returned successfully"
+          schema:
+            $ref: "#/definitions/CommonResponse"
+  /contactUs:
+    post:
+      tags:
+      - "contactUs"
+      summary: ""
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "ContactUsRequest"
+          required: true
+          schema:
+            $ref: "#/definitions/ContactUsRequest"
+      responses:
+        "400":
+          description: ""
+          schema:
+            $ref: "#/definitions/Error"
+        "200":
+          description: "All books returned successfully"
+          schema:
+            $ref: "#/definitions/CommonResponse"
 definitions:
   User:
     type: "object"
@@ -60,6 +135,37 @@ definitions:
         type: "string"
       name:
         type: "string"
+  SavePageRequest:
+    type: "object"
+    properties:
+      lessonId:
+        type: "number"
+      lastPage:
+        type: "string"
+      timestamp:
+        type: "string"
+      userId:
+        type: "string"
+  ContactUsRequest:
+    type: "object"
+    properties:
+      text:
+        type: "string"
+      timestamp:
+        type: "string"
+      userId:
+        type: "number"
+  FavoriteRequest:
+    type: "object"
+    properties:
+      bookId:
+        type: "number"
+      favorite:
+        type: "string"
+      timestamp:
+        type: "string"
+      userId:
+        type: "number"
   GooglinResponse:
     type: "object"
     properties:
@@ -72,34 +178,50 @@ definitions:
         properties:
           token:
             type: "string"
+  CommonResponse:
+    type: "object"
+    properties:
+      success:
+        type: "boolean"
+      message:
+        type: "string"
+      data:
+        type: "string"
   LibraryResponse:
     type: "object"
     properties:
-      id:
-        type: "number"
-      name:
-        type: "string"
-      favorite:
+      success:
         type: "boolean"
-      lessons:
-        type: "array"
-        items:
-          type: "object"
-          properties: 
-            id:
-              type: "number"
-            pdfPath:
-              type: "string"
-            urlPath:
-              type: "string"
-            name:
-              type: "string"
-            picture:
-              type: "string"
-            dateAdded:
-              type: "string"
-            numberOfPages:
-              type: "string"
+      message:
+        type: "string"
+      data:
+        type: "object"
+        properties:
+          id:
+            type: "number"
+          name:
+            type: "string"
+          favorite:
+            type: "boolean"
+          lessons:
+            type: "array"
+            items:
+              type: "object"
+              properties: 
+                id:
+                  type: "number"
+                pdfPath:
+                  type: "string"
+                urlPath:
+                  type: "string"
+                name:
+                  type: "string"
+                picture:
+                  type: "string"
+                dateAdded:
+                  type: "string"
+                numberOfPages:
+                  type: "string"
   Error:
     type: "object"
     properties:

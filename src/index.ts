@@ -6,6 +6,10 @@ import { ValidationError } from 'express-validation'
 import * as cors from 'cors'
 import { toNumber } from 'lodash'
 import * as dotenv from 'dotenv'
+import * as swaggerUi from 'swagger-ui-express'
+import * as fs from 'fs'
+import * as jsyaml from 'js-yaml'
+import { JsonObject } from 'swagger-ui-express'
 import { Book } from './entities/Book'
 import { User } from './entities/User'
 import { Lessons } from './entities/Lessons'
@@ -13,6 +17,9 @@ import { UserBookFavorite } from './entities/UserBookFavorite'
 import { UserInquiries } from './entities/UserInquiries'
 import routes from './routes'
 import { UserLessonProgress } from './entities/UserLessonProgress'
+
+const spec = fs.readFileSync('./src/swagger/app.yaml', 'utf8')
+const swaggerDocument = jsyaml.safeLoad(spec) as JsonObject
 
 dotenv.config()
 
@@ -35,6 +42,7 @@ createConnection({
     app.use(cors())
     app.use(bodyParser.json())
     app.use('/', routes)
+    app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
     app.use((err, req, res, next) => {
       if (err instanceof ValidationError) {

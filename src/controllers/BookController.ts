@@ -30,7 +30,7 @@ export default class BookController {
 
       res.send(200).json({
         success: true,
-        message: 'sucess',
+        message: 'success',
         data: books,
       })
     } catch (error) {
@@ -79,7 +79,7 @@ export default class BookController {
 
       res.send(201).json({
         success: true,
-        message: 'sucess',
+        message: 'success',
         data: 'ok',
       })
     } catch (error) {

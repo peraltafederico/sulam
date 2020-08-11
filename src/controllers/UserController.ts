@@ -30,7 +30,7 @@ export default class UserController {
 
         res.status(200).json({
           success: true,
-          message: 'sucess',
+          message: 'success',
           data: {
             token,
           },
@@ -43,7 +43,7 @@ export default class UserController {
 
       res.status(201).json({
         success: true,
-        message: 'sucess',
+        message: 'success',
         data: {
           token,
         },
@@ -82,7 +82,7 @@ export default class UserController {
 
       res.status(201).send({
         success: true,
-        message: 'sucess',
+        message: 'success',
         data: 'ok',
       })
     } catch (error) {

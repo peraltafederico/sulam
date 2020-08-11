@@ -44,7 +44,7 @@ export default class LessonsController {
 
       res.status(201).json({
         success: true,
-        message: 'sucess',
+        message: 'success',
         data: 'ok',
       })
     } catch (error) {

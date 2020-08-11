@@ -10,9 +10,29 @@ export default class BookController {
     try {
       const bookRepository = getRepository(Book)
 
-      const book = await bookRepository.find({ relations: ['lessons'] })
+      const books = await bookRepository
+        .createQueryBuilder()
+        .select([
+          'b.id',
+          'b.name',
+          'b.imageURL',
+          'b.favorite',
+          'l.id',
+          'l.pdfPath',
+          'l.urlPath',
+          'l.name',
+          'l.picture',
+          'l.dateAdded',
+        ])
+        .from(Book, 'b')
+        .innerJoin('b.lessons', 'l')
+        .getMany()
 
-      res.send(book)
+      res.send(200).json({
+        success: true,
+        message: 'sucess',
+        data: books,
+      })
     } catch (error) {
       res.status(400).json({
         message: 'Could not get all books',
@@ -57,8 +77,10 @@ export default class BookController {
         timestamp: body.timestamp,
       })
 
-      res.status(201).json({
-        status: 'OK',
+      res.send(201).json({
+        success: true,
+        message: 'sucess',
+        data: 'ok',
       })
     } catch (error) {
       res.status(400).json({

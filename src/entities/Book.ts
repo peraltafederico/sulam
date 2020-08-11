@@ -16,6 +16,9 @@ export class Book {
   @Column({ type: 'datetime' })
   addedDate: Date
 
+  @Column({ type: 'boolean' })
+  favorite: boolean
+
   @OneToMany(() => UserBookFavorite, (userBookFavorite) => userBookFavorite.book)
   userBookFavorite: UserBookFavorite[]
 

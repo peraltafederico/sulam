@@ -29,8 +29,11 @@ export default class UserController {
         )
 
         res.status(200).json({
-          status: 'OK',
-          token,
+          success: true,
+          message: 'sucess',
+          data: {
+            token,
+          },
         })
 
         return
@@ -39,8 +42,11 @@ export default class UserController {
       await userRepository.save(body)
 
       res.status(201).json({
-        status: 'OK',
-        token,
+        success: true,
+        message: 'sucess',
+        data: {
+          token,
+        },
       })
     } catch (error) {
       res.status(400).json({
@@ -75,7 +81,9 @@ export default class UserController {
       })
 
       res.status(201).send({
-        status: 'OK',
+        success: true,
+        message: 'sucess',
+        data: 'ok',
       })
     } catch (error) {
       res.status(400).json({

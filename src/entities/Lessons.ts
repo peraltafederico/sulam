@@ -11,6 +11,9 @@ export class Lessons {
   pdfPath: string
 
   @Column()
+  urlPath: string
+
+  @Column()
   name: string
 
   @Column()

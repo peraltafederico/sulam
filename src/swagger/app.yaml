@@ -30,6 +30,24 @@ paths:
           description: "User created or updated successfully"
           schema:
             $ref: "#/definitions/GooglinResponse"
+  /library:
+    get:
+      tags:
+      - "library"
+      summary: "Get all books with its lessons"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        "400":
+          description: "Could not get all books'"
+          schema:
+            $ref: "#/definitions/Error"
+        "200":
+          description: "All books returned successfully"
+          schema:
+            $ref: "#/definitions/LibraryResponse"            
 definitions:
   User:
     type: "object"
@@ -54,6 +72,34 @@ definitions:
         properties:
           token:
             type: "string"
+  LibraryResponse:
+    type: "object"
+    properties:
+      id:
+        type: "number"
+      name:
+        type: "string"
+      favorite:
+        type: "boolean"
+      lessons:
+        type: "array"
+        items:
+          type: "object"
+          properties: 
+            id:
+              type: "number"
+            pdfPath:
+              type: "string"
+            urlPath:
+              type: "string"
+            name:
+              type: "string"
+            picture:
+              type: "string"
+            dateAdded:
+              type: "string"
+            numberOfPages:
+              type: "string"
   Error:
     type: "object"
     properties:

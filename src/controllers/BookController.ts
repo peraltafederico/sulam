@@ -28,7 +28,7 @@ export default class BookController {
         .innerJoin('b.lessons', 'l')
         .getMany()
 
-      res.send(200).json({
+      res.status(200).json({
         success: true,
         message: 'success',
         data: books,
@@ -77,7 +77,7 @@ export default class BookController {
         timestamp: body.timestamp,
       })
 
-      res.send(201).json({
+      res.status(201).json({
         success: true,
         message: 'success',
         data: 'ok',
